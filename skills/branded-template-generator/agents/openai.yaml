@@ -1,0 +1,4 @@
+interface:
+  display_name: "Branded Template Generator"
+  short_description: "Generate branded, personalization-ready templates"
+  default_prompt: "Use $branded-template-generator to create a reusable local DOCX, PPTX, or XLSX template from my website or style brief."

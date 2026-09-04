@@ -1,0 +1,18 @@
+{
+  "name": "templify",
+  "version": "0.1.0",
+  "description": "Create reusable, branded DOCX, PPTX, and XLSX templates from a website or visual brief.",
+  "author": {
+    "name": "Doc-Failure"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Templify",
+    "shortDescription": "Generate reusable branded Office templates",
+    "longDescription": "Create editable, personalization-ready Word, PowerPoint, and Excel templates based on a public website or visual style brief.",
+    "developerName": "Doc-Failure",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use $branded-template-generator to create a reusable branded Office template from my website or style brief."
+  }
+}
