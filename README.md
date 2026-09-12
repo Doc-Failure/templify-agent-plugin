@@ -1,6 +1,6 @@
 # Templify Agent Plugin
 
-Templify creates reusable, branded Microsoft Word, PowerPoint, and Excel templates from a public website or a visual style brief. Generated templates remain editable and include a machine-readable personalization manifest.
+Templify creates reusable branded Office templates and turns conversations into editable Google Workspace proposals with separately tracked web/PDF deployments.
 
 ## Included skill
 
@@ -13,6 +13,15 @@ Templify creates reusable, branded Microsoft Word, PowerPoint, and Excel templat
 - Stable `{{placeholder}}` contracts for later personalization
 
 The skill creates local files only. It does not upload, publish, email, or share generated documents.
+
+`proposal-from-conversation` supports:
+
+- Pasted transcripts or recordings transcribed by the user's agent host
+- Google Docs, Slides, and Sheets templates selected with Google Picker
+- Editable Drive copies without modifying the source template
+- Tracked web/PDF deployment and proposal analytics
+
+Templify does not run AI models or transcription on its backend. The plugin connects to the public Templify MCP endpoint for deterministic Google file and deployment operations.
 
 ## Claude Code
 

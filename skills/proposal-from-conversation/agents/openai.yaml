@@ -1,0 +1,11 @@
+interface:
+  display_name: "Proposal from Conversation"
+  short_description: "Turn conversations into tracked Google proposals"
+  default_prompt: "Use $proposal-from-conversation to turn this conversation into an editable, tracked Google proposal."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "templify"
+      description: "Select, edit, deploy, and track Google Workspace proposals"
+      transport: "streamable_http"
+      url: "https://api-3cfmtpoddq-uc.a.run.app/mcp"

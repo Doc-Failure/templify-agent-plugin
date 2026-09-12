@@ -1,18 +1,23 @@
 {
   "name": "templify",
-  "version": "0.1.0",
-  "description": "Create reusable, branded DOCX, PPTX, and XLSX templates from a website or visual brief.",
+  "version": "0.2.0",
+  "description": "Create branded templates and turn conversations into editable, tracked Google proposals.",
   "author": {
     "name": "Doc-Failure"
   },
   "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Templify",
-    "shortDescription": "Generate reusable branded Office templates",
-    "longDescription": "Create editable, personalization-ready Word, PowerPoint, and Excel templates based on a public website or visual style brief.",
+    "shortDescription": "Create and track personalized proposals",
+    "longDescription": "Generate reusable branded Office templates or turn conversations into editable Google proposals with separately tracked web/PDF deployments.",
     "developerName": "Doc-Failure",
     "category": "Productivity",
     "capabilities": [],
-    "defaultPrompt": "Use $branded-template-generator to create a reusable branded Office template from my website or style brief."
+    "defaultPrompt": [
+      "Turn this conversation into an editable Google proposal.",
+      "Deploy my Google proposal as a tracked web page.",
+      "Show analytics for my tracked proposals."
+    ]
   }
 }

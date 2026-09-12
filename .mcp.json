@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "templify": {
+      "type": "http",
+      "url": "https://api-3cfmtpoddq-uc.a.run.app/mcp"
+    }
+  }
+}

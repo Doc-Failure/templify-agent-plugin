@@ -1,12 +1,12 @@
 {
   "name": "templify",
-  "version": "0.1.0",
-  "description": "Create reusable, branded DOCX, PPTX, and XLSX templates from a website or visual brief.",
+  "version": "0.2.0",
+  "description": "Create branded templates and turn conversations into editable, tracked Google proposals.",
   "author": {
     "name": "Doc-Failure",
     "url": "https://github.com/Doc-Failure"
   },
   "repository": "https://github.com/Doc-Failure/templify-agent-plugin",
   "license": "MIT",
-  "keywords": ["branding", "documents", "templates", "docx", "pptx", "xlsx"]
+  "keywords": ["branding", "documents", "templates", "proposals", "google-drive", "analytics"]
 }
