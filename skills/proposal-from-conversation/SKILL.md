@@ -11,7 +11,7 @@ Create the proposal with the model and transcription capabilities supplied by th
 
 Identify the conversation source, Google template, intended recipient, output filename, proposal objective, and whether deployment is requested. Use a pasted transcript directly. When audio is attached, transcribe it with the host's native capability; if that capability is unavailable, ask for a transcript. Never upload audio to Templify.
 
-Accept Google Docs, Slides, and Sheets templates. If the user has not supplied an accessible Google file URL or ID, call `choose_google_template`, give them its Picker link, and then poll `get_google_template_selection` after they finish selecting.
+Accept Google Docs, Slides, and Sheets templates. If the user has not supplied an accessible Google file URL or ID, call `choose_google_template`, give them its Picker link, and then poll `get_google_template_selection` after they finish selecting. Always display the complete `pickerUrl` as plain text in a fenced code block; do not hide it behind Markdown link text, because some MCP clients do not make rendered links clickable.
 
 ## Create the editable Google file
 

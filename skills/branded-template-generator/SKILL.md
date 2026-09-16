@@ -1,6 +1,6 @@
 ---
 name: branded-template-generator
-description: Derive a visual system from a website or style brief and generate reusable, branded templates as local DOCX, PPTX, or XLSX files. Use for editable proposals, reports, briefs, plans, presentations, and spreadsheet models that another workflow will later personalize; do not use for Google Drive creation or filling a template for a specific recipient.
+description: Derive a visual system from a website or style brief and generate reusable, branded templates as local DOCX, PPTX, or XLSX files, optionally uploading the confirmed result to Google Drive through Templify MCP. Use for editable proposals, reports, briefs, plans, presentations, and spreadsheet models; do not use for filling a template for a specific recipient.
 ---
 
 # Templify Branded Template Generator
@@ -11,7 +11,7 @@ Turn a website or style brief and a content brief into a reusable branded templa
 - `.docx` for detailed, asynchronously reviewed material;
 - `.xlsx` for models, trackers, plans, and other editable structured data.
 
-Do not connect to Google, upload, publish, email, or share the result. A later workflow may import the local file elsewhere.
+Do not connect to Google, upload, publish, email, or share the result unless the user explicitly requests the optional MCP handoff after generation. A later workflow may import the local file elsewhere.
 
 ## Establish the brief
 
@@ -92,5 +92,9 @@ Before returning:
 6. Exercise one representative long value and one omitted optional value in a disposable copy, then leave the delivered template pristine.
 
 Return clickable local paths for the artifact and manifest, the selected format, a concise description of the design and optional sections, and any assumptions or validation limitations.
+
+## Optional Google handoff
+
+Only when the user explicitly asks to upload the generated artifact, read the confirmed Office file as base64 and call `upload_google_file` with its filename and the exact Office MIME type. Never upload the manifest. Return the resulting editable Google file URL and ID. This upload is separate from proposal personalization: do not edit any source template, and ask for confirmation before publishing or deploying the uploaded file.
 
 For installation, packaging, and behavioral tests of this skill itself, read [references/distribution-and-testing.md](references/distribution-and-testing.md).

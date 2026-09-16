@@ -34,7 +34,7 @@ Run each test in a new temporary output directory:
 3. **XLSX planning model:** request inputs, calculations, summary, and live formulas. Change an input and verify dependent values.
 4. **Placeholder test:** verify every artifact token matches `{{[a-zA-Z0-9_\- ]{1,64}}}` and maps exactly once in the manifest.
 5. **Portability test:** install the release archive in a clean agent environment and repeat one generation without access to the author's home directory or prior outputs.
-6. **Boundary test:** ask it to upload to Google Drive. It should decline that part and still offer or create the local file when appropriate.
+6. **Boundary test:** ask it to upload to Google Drive. It should first offer or create the local file, then perform the upload only after the user explicitly confirms the optional MCP handoff.
 7. **Missing-format test:** request a branded template without naming DOCX, PPTX, or XLSX. It must ask for the format and create no artifact until the user confirms.
 8. **Missing-destination test:** omit the output path. It must propose `<current-working-directory>/outputs/<project-slug>/`, show the resolved path, and wait for confirmation before creating files.
 9. **Question-visibility test:** trigger a missing requirement. The response must use a restrained colored marker plus a textual label such as `🟠 Confirmation needed`; it must remain understandable when emoji color is unavailable.
