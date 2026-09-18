@@ -107,33 +107,51 @@ When setup is complete, briefly report what succeeded and any action I must take
 
 Copy only the text between the `BEGIN` and `END` markers.
 
-### One-prompt first template and deployment
+### Test prompt: generate a personalized presentation only
 
-After setup, paste this prompt to interactively create, upload, personalize, and deploy the first template:
+After setup, use this prompt when a customer wants a personalized, editable presentation without uploading or deploying it:
 
 ```text
------ BEGIN TEMPLIFY FIRST TEMPLATE PROMPT -----
-Help me create and deploy my first Templify template interactively.
+----- BEGIN TEMPLIFY PRESENTATION-ONLY PROMPT -----
+Use the branded-template-generator skill to create a personalized, editable PPTX presentation for a customer.
 
-1. Ask only for missing information, one concise group of questions at a time:
-   - Format: DOCX, PPTX, or XLSX
-   - Template purpose and intended audience
-   - Brand or website URL, or a written style direction
-   - Language, tone, approximate length, and required sections
-   - Content, placeholders, or source material
-   - Local output directory
-   - Google Drive folder, if I want a specific folder
-2. Summarize the brief with the proposed structure, style source, output path, and placeholders. Wait for my confirmation before generating.
-3. Generate and validate the local Office template and its manifest with the branded-template-generator skill.
-4. Show me the local files, then upload the Office file with upload_google_file. Do not upload the manifest unless I explicitly ask.
-5. Inspect the uploaded Google file. If I asked for personalization, ask for any missing recipient or proposal information, apply edits only to the uploaded file or a copied file, and re-inspect it.
-6. Ask for any missing deployment title, client name, display mode (scroll or book), and expiration date. Do not invent facts, prices, dates, or commitments.
-7. Deploy the Google file with deploy_google_file and return the editable Google URL, public deployment URL, PDF URL, deployment ID, and expiration. The user has already requested deployment in this prompt; do not ask for another confirmation before uploading or deploying.
-8. Do not purchase a plan, change billing, or edit an original source template without my explicit request.
------ END TEMPLIFY FIRST TEMPLATE PROMPT -----
+Start by asking me for the website URL. In the same message, briefly explain that you will use it to understand the brand's colors, typography, imagery, and tone—not to copy the site pixel for pixel. Wait for my answer before asking for anything else.
+
+Then ask me for the presentation content or source material and any customer-specific facts that are not already included. Infer the presentation's purpose, audience, language, tone, structure, title, and approximate length from that content. Do not ask me to restate information you can infer. Never invent customer facts, prices, dates, claims, or commitments.
+
+Use a sensible local output folder under the current working directory unless I provide another path. Show me a short brief and proposed slide structure, then generate and validate the PPTX and its adjacent personalization manifest. Keep text, charts, and shapes editable. Return clickable paths to both files.
+
+This is a local-generation test only. Do not ask for a Google Drive folder, upload the presentation, personalize a Google copy, or deploy it.
+----- END TEMPLIFY PRESENTATION-ONLY PROMPT -----
 ```
 
-Copy only the text between the `BEGIN` and `END` markers. The agent must ask questions and confirm the creation brief, then proceed with the requested upload, personalization, and deployment without separate confirmation prompts.
+Copy only the text between the `BEGIN` and `END` markers.
+
+### Test prompt: generate and deploy a presentation
+
+Use this shorter prompt to create, upload, personalize, and deploy a customer presentation:
+
+```text
+----- BEGIN TEMPLIFY GENERATE-AND-DEPLOY PROMPT -----
+Use the branded-template-generator skill to create, upload, and deploy a personalized, editable PPTX presentation for a customer.
+
+Start by asking me for the website URL. In the same message, briefly explain that you will use it to understand the brand's colors, typography, imagery, and tone—not to copy the site pixel for pixel. Wait for my answer before asking for anything else.
+
+Next, ask me for the presentation content or source material and any essential customer-specific facts that are missing. Infer the purpose, audience, language, tone, title, structure, approximate length, and deployment title from the supplied content. Do not ask for the template purpose, a Google Drive folder, or details I already provided. Never invent customer facts, prices, dates, claims, or commitments.
+
+Use a sensible local output folder under the current working directory. Briefly summarize the inferred brief and slide structure, then:
+
+1. Generate and validate the local PPTX and its adjacent manifest.
+2. Upload only the PPTX with `upload_google_file` and inspect the editable Google Slides file.
+3. Correct any obvious content or layout problems in the uploaded file without editing an unrelated source template.
+4. Deploy it with `deploy_google_file`, using scroll mode and the service's default expiration unless the supplied content or my instructions specify otherwise.
+5. Return the local file paths, editable Google URL, public deployment URL, PDF URL, deployment ID, and expiration.
+
+This prompt already authorizes upload and deployment, so do not ask for another confirmation. Do not purchase a plan or change billing.
+----- END TEMPLIFY GENERATE-AND-DEPLOY PROMPT -----
+```
+
+Copy only the text between the `BEGIN` and `END` markers. The agent asks for the website first, gathers only essential missing content, and then completes the requested upload and deployment without extra confirmation prompts.
 
 If the agent cannot install the private Git repository directly, clone this repository locally first and rerun the prompt from that checkout. The plugin's MCP endpoint is already declared in `.mcp.json`.
 

@@ -15,7 +15,9 @@ Do not connect to Google, upload, publish, email, or share the result unless the
 
 ## Establish the brief
 
-Collect the output format, purpose, audience, offer, source material, website or style direction, language, tone, length, title, reusable sections, and local destination. Do not make the user repeat known information, but do not silently choose missing or ambiguous requirements.
+Collect only the information that is necessary to produce the requested artifact. When the user wants the design based on a company or product website but has not supplied its URL, ask for the website URL first, in a message by itself. Briefly explain that the site is used to understand the brand's colors, typography, imagery, and voice; it is not copied pixel for pixel.
+
+Infer the purpose, audience, offer, language, tone, structure, and approximate length from the user's source content whenever they are reasonably clear. Do not ask the user to restate a template purpose that can be understood from that content. Ask a concise follow-up only for missing information that would materially change the result. Google Drive folders are outside this local-generation brief and must not be requested.
 
 Before researching or generating, present a short brief for confirmation. It must state:
 
@@ -41,7 +43,7 @@ Should I proceed with this setup?
 
 Use `🔵` for the proposed brief, `🟠` for a decision the user must make, and `📁` when emphasizing an output location. Keep the markers restrained and never rely on color alone: always include a textual heading or label.
 
-If the user has not explicitly selected a format, ask which format they want and wait for the answer. Never default to PPTX or infer the format from words such as "template," "proposal," "report," or "presentation." If another material requirement is missing or ambiguous, propose a sensible option and ask the user to confirm it. Begin generation only after the brief is sufficiently defined and the user has confirmed it.
+If the user has not explicitly selected a format, ask which format they want and wait for the answer. Never default to PPTX or infer the format from words such as "template," "proposal," "report," or "presentation." If another material requirement is missing or ambiguous, propose a sensible option and ask the user to confirm it. Begin generation only after the brief is sufficiently defined and the user has confirmed it. Do not turn inferred, low-risk details into extra questions.
 
 For the destination, use the path supplied by the user. If none is supplied, propose `<current-working-directory>/outputs/<project-slug>/` and ask for confirmation. Interpret `<current-working-directory>` at runtime; never replace it in the published skill with the author's absolute path.
 
