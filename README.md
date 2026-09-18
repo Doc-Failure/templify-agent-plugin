@@ -84,6 +84,31 @@ $branded-template-generator
 $proposal-from-conversation
 ```
 
+### One-prompt setup for any agent
+
+Paste this into a new Claude Code, Codex, or compatible agent session from the plugin repository:
+
+```text
+----- BEGIN TEMPLIFY SETUP PROMPT -----
+Set up Templify in this agent. Do what you can and guide me through anything that needs my input.
+
+1. Identify this agent and version, then inspect existing plugins, MCP servers, and skills. Preserve existing configuration and avoid duplicates.
+2. Install the Templify plugin using this agent's supported plugin or skill workflow. Prefer the local repository at /home/conve/Project/templify-agent-plugin; if it is unavailable, use the Git repository Doc-Failure/templify-agent-plugin. Check the installed client's help or current documentation before running commands.
+3. Confirm that the Templify plugin includes both skills and its MCP configuration. Do not copy credentials into chat, shell history, or repository files.
+4. Reload or restart the agent only if required. On the first Google-dependent action, let me approve the Templify OAuth flow in my browser.
+5. Verify that the Templify MCP tools and skills are discoverable, but do not create, upload, edit, deploy, or purchase anything during setup.
+
+When setup is complete, briefly report what succeeded and any action I must take. Then suggest these tests:
+- Generate a local branded DOCX, PPTX, or XLSX template.
+- Upload it to Google Drive with Templify, only after I confirm.
+- Ask Templify for the current plan status.
+----- END TEMPLIFY SETUP PROMPT -----
+```
+
+Copy only the text between the `BEGIN` and `END` markers.
+
+If the agent cannot install the private Git repository directly, clone this repository locally first and rerun the prompt from that checkout. The plugin's MCP endpoint is already declared in `.mcp.json`.
+
 ## Usage
 
 ### 1. Generate a branded template locally
