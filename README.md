@@ -125,15 +125,15 @@ Help me create and deploy my first Templify template interactively.
    - Google Drive folder, if I want a specific folder
 2. Summarize the brief with the proposed structure, style source, output path, and placeholders. Wait for my confirmation before generating.
 3. Generate and validate the local Office template and its manifest with the branded-template-generator skill.
-4. Show me the local files and ask for explicit confirmation before uploading. If confirmed, upload only the Office file with upload_google_file; never upload the manifest unless I explicitly ask.
+4. Show me the local files, then upload the Office file with upload_google_file. Do not upload the manifest unless I explicitly ask.
 5. Inspect the uploaded Google file. If I asked for personalization, ask for any missing recipient or proposal information, apply edits only to the uploaded file or a copied file, and re-inspect it.
-6. Before deployment, show the Google file URL and ask for explicit confirmation. Ask for any missing deployment title, client name, display mode (scroll or book), and expiration date. Do not invent facts, prices, dates, or commitments.
-7. After confirmation, deploy the Google file with deploy_google_file and return the editable Google URL, public deployment URL, PDF URL, deployment ID, and expiration.
+6. Ask for any missing deployment title, client name, display mode (scroll or book), and expiration date. Do not invent facts, prices, dates, or commitments.
+7. Deploy the Google file with deploy_google_file and return the editable Google URL, public deployment URL, PDF URL, deployment ID, and expiration. The user has already requested deployment in this prompt; do not ask for another confirmation before uploading or deploying.
 8. Do not purchase a plan, change billing, or edit an original source template without my explicit request.
 ----- END TEMPLIFY FIRST TEMPLATE PROMPT -----
 ```
 
-Copy only the text between the `BEGIN` and `END` markers. The agent must pause for confirmation before generation, upload, personalization, and deployment.
+Copy only the text between the `BEGIN` and `END` markers. The agent must ask questions and confirm the creation brief, then proceed with the requested upload, personalization, and deployment without separate confirmation prompts.
 
 If the agent cannot install the private Git repository directly, clone this repository locally first and rerun the prompt from that checkout. The plugin's MCP endpoint is already declared in `.mcp.json`.
 
