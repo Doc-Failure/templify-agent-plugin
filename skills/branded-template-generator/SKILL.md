@@ -63,7 +63,7 @@ Every placeholder in the artifact must map to exactly one manifest field. Save t
 
 Plan the information architecture before rendering. Choose sections and layouts that fit the requested template type. For example, a proposal may move from context to approach and next action; a report may move from summary to findings and recommendations; a plan may move from objectives to workstreams, timing, ownership, and measures. Do not impose proposal sections on other template types.
 
-Every DOCX template must begin with a dedicated, full-page cover. Adding the cover must not force a different body structure or visual direction: preserve the architecture selected for the brief and treat the cover as an opening layer.
+Every DOCX template must begin with a dedicated, full-page cover. Read [references/docx-cover-design.md](references/docx-cover-design.md) for the cover composition pattern: a strong full-bleed visual field, high-contrast title block, restrained accent rule, subtitle, and lower metadata area. Translate that pattern into the brand system derived for the brief; do not copy another brand's colors, logo, wording, or exact artwork. Adding the cover must not force a different body structure or visual direction: preserve the architecture selected for the brief and treat the cover as an opening layer.
 
 Read the selected section in [references/format-guides.md](references/format-guides.md). Maintain one central message per slide or section, distinguish facts from assumptions, and cite external facts with readable links or notes.
 
@@ -87,7 +87,7 @@ Before returning:
 1. Confirm the artifact and manifest exist in the requested local directory.
 2. Open or parse the OOXML package and confirm it is structurally valid.
 3. Render or inspect every page, slide, or relevant worksheet when the runtime supports it; check clipping, overflow, broken images, inconsistent spacing, formulas, and unreadable contrast.
-4. For DOCX, confirm page one is a standalone cover and body content starts after an explicit page or section break.
+4. For DOCX, confirm page one is a standalone cover and body content starts after an explicit page or section break. Check that the title, subtitle, metadata, contrast, and any artwork remain inside the page bounds and render correctly without remote font or image dependencies.
 5. Confirm all `{{...}}` tokens are valid and mapped exactly once in the manifest.
 6. Exercise one representative long value and one omitted optional value in a disposable copy, then leave the delivered template pristine.
 
