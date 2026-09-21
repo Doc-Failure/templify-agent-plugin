@@ -97,6 +97,6 @@ Return clickable local paths for the artifact and manifest, the selected format,
 
 ## Optional Google handoff
 
-Only when the user explicitly asks to upload the generated artifact, read the confirmed Office file as base64 and call `upload_google_file` with its filename and the exact Office MIME type. Never upload the manifest. Return the resulting editable Google file URL and ID. This upload is separate from proposal personalization: do not edit any source template. When the user has already explicitly requested deployment, do not add another confirmation step before publishing or deploying the uploaded file.
+Only when the user explicitly asks to upload the generated artifact, read the confirmed Office file as base64 and call `upload_google_file` with its filename and the exact Office MIME type. Never upload the manifest. Return the resulting editable Google file URL and ID. Always include the complete absolute `https://docs.google.com/...` URL as plain text in a fenced code block; do not return only a file ID, relative path, or hidden Markdown link. This upload is separate from proposal personalization: do not edit any source template. When the user has already explicitly requested deployment, do not add another confirmation step before publishing or deploying the uploaded file. For any deployed result, use the same absolute-URL rule for the Google file, public deployment URL, and PDF URL.
 
 For installation, packaging, and behavioral tests of this skill itself, read [references/distribution-and-testing.md](references/distribution-and-testing.md).

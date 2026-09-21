@@ -28,6 +28,6 @@ Do not invent prices, commitments, customer facts, dates, or outcomes that the c
 
 Deployment publishes a separate public web/PDF version and consumes Templify quota. Call `deploy_google_file` only when the user has requested deployment or confirms it after reviewing the editable Google file.
 
-Return both `googleFileUrl` and the tracked deployment `url`, plus the PDF URL and expiration. Free accounts receive the quota and expiry enforced by Templify; never attempt to bypass them.
+Return both `googleFileUrl` and the tracked deployment `url`, plus the PDF URL and expiration. Always show every URL as a complete absolute URL in a fenced code block, including the `https://docs.google.com/...` editable-file URL, public deployment URL, and PDF URL. Do not return only a file ID, relative path, or hide these URLs behind Markdown link text. Free accounts receive the quota and expiry enforced by Templify; never attempt to bypass them.
 
 Use `get_deployment_stats` for analytics, `list_deployments` for management, and `unpublish_deployment` only after the user explicitly requests deletion.
