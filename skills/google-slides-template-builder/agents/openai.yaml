@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Slides Template Builder"
+  short_description: "Build reusable templates from Google Slides designs"
+  default_prompt: "Use $google-slides-template-builder to create a reusable proposal template from a Google Slides gallery design."

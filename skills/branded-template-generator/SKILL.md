@@ -17,6 +17,8 @@ Do not connect to Google, upload, publish, email, or share the result unless the
 
 Collect only the information that is necessary to produce the requested artifact. When the user wants the design based on a company or product website but has not supplied its URL, ask for the website URL first, in a message by itself. Briefly explain that the site is used to understand the brand's colors, typography, imagery, and voice; it is not copied pixel for pixel.
 
+When the user requests a presentation but has no design source, offer two choices before confirming the brief: create an original local PPTX with this skill, or start from a design in Google's built-in Slides template gallery. If they choose the Google-native option, route the task to `$google-slides-template-builder`; do not require a local output directory or continue this skill's OOXML workflow.
+
 Infer the purpose, audience, offer, language, tone, structure, and approximate length from the user's source content whenever they are reasonably clear. Do not ask the user to restate a template purpose that can be understood from that content. Ask a concise follow-up only for missing information that would materially change the result. Google Drive folders are outside this local-generation brief and must not be requested.
 
 Before researching or generating, present a short brief for confirmation. It must state:
