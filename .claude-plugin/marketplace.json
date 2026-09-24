@@ -1,0 +1,23 @@
+{
+  "name": "templify",
+  "owner": {
+    "name": "Irvito",
+    "url": "https://www.irvito.com/"
+  },
+  "metadata": {
+    "description": "Templify plugins for creating, personalizing, publishing, and tracking proposals."
+  },
+  "plugins": [
+    {
+      "name": "templify",
+      "source": "./",
+      "category": "Productivity",
+      "tags": [
+        "proposals",
+        "templates",
+        "google-workspace",
+        "analytics"
+      ]
+    }
+  ]
+}

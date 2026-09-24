@@ -65,6 +65,13 @@ MCP is required for the `proposal-from-conversation` skill, `upload_google_file`
 
 ## Claude Code
 
+Install the plugin from its public marketplace:
+
+```text
+/plugin marketplace add Doc-Failure/templify-agent-plugin
+/plugin install templify@templify
+```
+
 Test the plugin from the repository's parent directory:
 
 ```bash
@@ -75,6 +82,7 @@ Invoke the skills explicitly:
 
 ```text
 /templify:branded-template-generator
+/templify:google-slides-template-builder
 /templify:proposal-from-conversation
 ```
 
