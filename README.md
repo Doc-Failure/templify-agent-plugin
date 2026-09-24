@@ -1,6 +1,6 @@
 # Templify Agent Plugin
 
-Templify creates reusable branded Office templates and turns conversations into editable Google Workspace proposals with separately tracked web/PDF deployments.
+Templify creates branded sales proposal templates and pitch decks, turns conversations into editable proposals in Google Slides, Docs, or Sheets, and publishes tracked web/PDF versions with proposal engagement analytics.
 
 ## Websites
 

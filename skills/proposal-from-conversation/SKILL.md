@@ -1,6 +1,6 @@
 ---
 name: proposal-from-conversation
-description: Turn a pasted transcript or attached conversation recording into an editable Google Docs, Slides, or Sheets proposal and optionally deploy a separately tracked web/PDF version with Templify. Use when the user wants a proposal created from a call, meeting, interview, or discovery conversation. Do not use for reusable local Office templates.
+description: Turn a sales call, meeting, interview, or discovery transcript into an editable Google Docs, Slides, or Sheets proposal, then optionally publish a tracked web/PDF version and measure proposal views and engagement analytics with Templify. Use for sales proposals, client proposals, pitch decks, and follow-up documents created from conversations; do not use for reusable local Office templates.
 ---
 
 # Proposal from Conversation

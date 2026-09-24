@@ -5,7 +5,7 @@
     "url": "https://www.irvito.com/"
   },
   "metadata": {
-    "description": "Templify plugins for creating, personalizing, publishing, and tracking proposals."
+    "description": "Create branded sales proposals and pitch decks in Google Slides, Docs, or Sheets, personalize them from conversations, publish tracked web/PDF versions, and measure proposal engagement."
   },
   "plugins": [
     {
@@ -13,10 +13,15 @@
       "source": "./",
       "category": "Productivity",
       "tags": [
-        "proposals",
-        "templates",
-        "google-workspace",
-        "analytics"
+        "proposal-tracking",
+        "sales-proposals",
+        "proposal-analytics",
+        "google-slides",
+        "google-docs",
+        "google-sheets",
+        "pitch-decks",
+        "presentation-templates",
+        "google-workspace"
       ]
     }
   ]

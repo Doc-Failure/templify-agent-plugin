@@ -1,6 +1,6 @@
 ---
 name: google-slides-template-builder
-description: Create a reusable Google Slides proposal template from a design in Google's built-in Slides template gallery. Use when the user wants a Google-native presentation and prefers an existing Google design instead of a locally generated PPTX. Do not use for Google Docs, Sheets, local Office files, or recipient-specific proposal personalization.
+description: Create a reusable Google Slides sales proposal, presentation template, or pitch deck from Google's built-in Slides template gallery. Use when the user wants a Google-native presentation or proposal deck based on an existing Google design instead of a locally generated PPTX. Do not use for Google Docs, Sheets, local Office files, or recipient-specific proposal personalization.
 ---
 
 # Google Slides Template Builder

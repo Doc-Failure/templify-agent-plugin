@@ -1,7 +1,7 @@
 {
   "name": "templify",
-  "version": "0.2.0",
-  "description": "Create branded templates and turn conversations into editable, tracked Google proposals.",
+  "version": "0.2.1",
+  "description": "Create branded sales proposals and pitch decks in Google Slides, Docs, or Sheets, then publish and track proposal views and engagement.",
   "author": {
     "name": "Doc-Failure",
     "url": "https://www.irvito.com/"
@@ -9,5 +9,16 @@
   "homepage": "https://trytemplify.com/",
   "repository": "https://github.com/Doc-Failure/templify-agent-plugin",
   "license": "MIT",
-  "keywords": ["branding", "documents", "templates", "proposals", "google-drive", "analytics"]
+  "keywords": [
+    "proposal-tracking",
+    "sales-proposals",
+    "proposal-analytics",
+    "google-slides",
+    "google-docs",
+    "google-sheets",
+    "pitch-decks",
+    "presentation-templates",
+    "document-generation",
+    "google-workspace"
+  ]
 }

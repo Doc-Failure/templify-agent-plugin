@@ -1,7 +1,7 @@
 {
   "name": "templify",
-  "version": "0.2.0",
-  "description": "Create branded templates and turn conversations into editable, tracked Google proposals.",
+  "version": "0.2.1",
+  "description": "Create branded sales proposals and pitch decks in Google Slides, Docs, or Sheets, then publish and track proposal views and engagement.",
   "author": {
     "name": "Doc-Failure",
     "url": "https://www.irvito.com/"
@@ -11,8 +11,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Templify",
-    "shortDescription": "Create and track personalized proposals",
-    "longDescription": "Generate reusable branded Office templates or turn conversations into editable Google proposals with separately tracked web/PDF deployments.",
+    "shortDescription": "Create, publish, and track sales proposals",
+    "longDescription": "Create branded sales proposals, presentation templates, and pitch decks; personalize Google Slides, Docs, or Sheets from conversations; publish tracked web/PDF versions; and review proposal engagement analytics.",
     "developerName": "Doc-Failure",
     "category": "Productivity",
     "websiteURL": "https://trytemplify.com/",

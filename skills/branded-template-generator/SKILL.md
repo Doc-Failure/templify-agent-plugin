@@ -1,6 +1,6 @@
 ---
 name: branded-template-generator
-description: Derive a visual system from a website or style brief and generate reusable, branded templates as local DOCX, PPTX, or XLSX files, optionally uploading the confirmed result to Google Drive through Templify MCP. Use for editable proposals, reports, briefs, plans, presentations, and spreadsheet models; do not use for filling a template for a specific recipient.
+description: Create reusable branded sales proposal templates, business documents, presentation templates, and pitch decks as editable DOCX, PPTX, or XLSX files from a website or style brief, with optional Google Drive upload through Templify MCP. Use for proposals, reports, briefs, plans, presentations, and spreadsheet models; do not use for filling a template for a specific recipient.
 ---
 
 # Templify Branded Template Generator
