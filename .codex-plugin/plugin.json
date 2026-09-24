@@ -3,8 +3,10 @@
   "version": "0.2.0",
   "description": "Create branded templates and turn conversations into editable, tracked Google proposals.",
   "author": {
-    "name": "Doc-Failure"
+    "name": "Doc-Failure",
+    "url": "https://www.irvito.com/"
   },
+  "homepage": "https://trytemplify.com/",
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
@@ -13,6 +15,9 @@
     "longDescription": "Generate reusable branded Office templates or turn conversations into editable Google proposals with separately tracked web/PDF deployments.",
     "developerName": "Doc-Failure",
     "category": "Productivity",
+    "websiteURL": "https://trytemplify.com/",
+    "logo": "./assets/directory-icon.png",
+    "composerIcon": "./assets/composer-icon.png",
     "capabilities": [],
     "defaultPrompt": [
       "Turn this conversation into an editable Google proposal.",

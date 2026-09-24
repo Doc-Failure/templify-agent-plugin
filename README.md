@@ -2,6 +2,13 @@
 
 Templify creates reusable branded Office templates and turns conversations into editable Google Workspace proposals with separately tracked web/PDF deployments.
 
+## Websites
+
+- Product: https://trytemplify.com/
+- Free AI Proposal Template Generator: https://trytemplify.com/free-ai-proposal-template-generator/
+- Templify MCP: https://trytemplify.com/templify-mcp/
+- Developer: https://www.irvito.com/
+
 Model choice and transcription are provided by your agent host (Claude Code or Codex), not by these skills. The Templify MCP server only performs deterministic Google file, deployment, and analytics operations.
 
 ## Included skills
@@ -26,6 +33,10 @@ The skill creates local files only: it writes the Office file and its personaliz
 This skill selects an existing Google Docs, Slides, or Sheets template, copies it, edits the copy, and optionally deploys a separately tracked web/PDF version. It never edits the source template.
 
 Templify does not run AI models or transcription on its backend. The plugin connects to the public Templify MCP endpoint for deterministic Google file and deployment operations.
+
+Both skills treat file mutations as checkpoints rather than assuming success from a write or MCP response. They analyze locally generated Office files, inspect Google files after copies, uploads, and edit batches, and inspect the public web/PDF representations after deployment. If the runtime cannot perform a visual check, it reports the limitation instead of claiming visual validation.
+
+For terminal compatibility, every Google or deployment handoff includes visible, unshortened absolute URLs. After deployment, the editable Google file, public webpage, and PDF URLs are printed as labeled `https://...` text on separate lines; Markdown links are optional and never replace the raw URLs.
 
 ## Model and transcription selection
 

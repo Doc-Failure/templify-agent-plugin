@@ -4,8 +4,9 @@
   "description": "Create branded templates and turn conversations into editable, tracked Google proposals.",
   "author": {
     "name": "Doc-Failure",
-    "url": "https://github.com/Doc-Failure"
+    "url": "https://www.irvito.com/"
   },
+  "homepage": "https://trytemplify.com/",
   "repository": "https://github.com/Doc-Failure/templify-agent-plugin",
   "license": "MIT",
   "keywords": ["branding", "documents", "templates", "proposals", "google-drive", "analytics"]
