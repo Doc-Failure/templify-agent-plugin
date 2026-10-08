@@ -1,12 +1,18 @@
 {
   "name": "templify",
-  "version": "0.2.1",
+  "displayName": "Templify by Irvito",
+  "version": "0.2.2",
   "description": "Create branded sales proposals and pitch decks in Google Slides, Docs, or Sheets, then publish and track proposal views and engagement.",
   "author": {
-    "name": "Doc-Failure",
+    "name": "Irvito",
     "url": "https://www.irvito.com/"
   },
   "homepage": "https://trytemplify.com/",
+  "documentationUrl": "https://trytemplify.com/templify-mcp/",
+  "supportUrl": "https://trytemplify.com/customer-support/",
+  "privacyPolicyUrl": "https://trytemplify.com/privacy-policy/",
+  "termsOfServiceUrl": "https://trytemplify.com/terms-of-service/",
+  "icon": "./assets/directory-icon.png",
   "repository": "https://github.com/Doc-Failure/templify-agent-plugin",
   "license": "MIT",
   "keywords": [

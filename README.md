@@ -32,9 +32,17 @@ The skill creates local files only: it writes the Office file and its personaliz
 
 This skill selects an existing Google Docs, Slides, or Sheets template, copies it, edits the copy, and optionally deploys a separately tracked web/PDF version. It never edits the source template.
 
+`google-slides-template-builder` supports:
+
+- Reusable Google Slides proposals, presentation templates, and pitch decks
+- Starting from Google's built-in Slides template gallery instead of a local PPTX
+- Google-native editing of the copied deck through Templify MCP
+
+Use it when you want a Google-native deck; use `branded-template-generator` for local Office files and `proposal-from-conversation` to personalize a template for a specific recipient.
+
 Templify does not run AI models or transcription on its backend. The plugin connects to the public Templify MCP endpoint for deterministic Google file and deployment operations.
 
-Both skills treat file mutations as checkpoints rather than assuming success from a write or MCP response. They analyze locally generated Office files, inspect Google files after copies, uploads, and edit batches, and inspect the public web/PDF representations after deployment. If the runtime cannot perform a visual check, it reports the limitation instead of claiming visual validation.
+All skills treat file mutations as checkpoints rather than assuming success from a write or MCP response. They analyze locally generated Office files, inspect Google files after copies, uploads, and edit batches, and inspect the public web/PDF representations after deployment. If the runtime cannot perform a visual check, it reports the limitation instead of claiming visual validation.
 
 For terminal compatibility, every Google or deployment handoff includes visible, unshortened absolute URLs. After deployment, the editable Google file, public webpage, and PDF URLs are printed as labeled `https://...` text on separate lines; Markdown links are optional and never replace the raw URLs.
 
@@ -100,6 +108,7 @@ Invoke the skills explicitly as:
 
 ```text
 $branded-template-generator
+$google-slides-template-builder
 $proposal-from-conversation
 ```
 
@@ -112,8 +121,8 @@ Paste this into a new Claude Code, Codex, or compatible agent session from the p
 Set up Templify in this agent. Do what you can and guide me through anything that needs my input.
 
 1. Identify this agent and version, then inspect existing plugins, MCP servers, and skills. Preserve existing configuration and avoid duplicates.
-2. Install the Templify plugin using this agent's supported plugin or skill workflow. Prefer the local repository at /home/conve/Project/templify-agent-plugin; if it is unavailable, use the Git repository Doc-Failure/templify-agent-plugin. Check the installed client's help or current documentation before running commands.
-3. Confirm that the Templify plugin includes both skills and its MCP configuration. Do not copy credentials into chat, shell history, or repository files.
+2. Install the Templify plugin using this agent's supported plugin or skill workflow. Use the public Git repository Doc-Failure/templify-agent-plugin, or a local checkout of it if I have one. Check the installed client's help or current documentation before running commands.
+3. Confirm that the Templify plugin includes its three skills and its MCP configuration. Do not copy credentials into chat, shell history, or repository files.
 4. Reload or restart the agent only if required. On the first Google-dependent action, let me approve the Templify OAuth flow in my browser.
 5. Verify that the Templify MCP tools and skills are discoverable, but do not create, upload, edit, deploy, or purchase anything during setup.
 
@@ -172,7 +181,7 @@ This prompt already authorizes upload and deployment, so do not ask for another 
 
 Copy only the text between the `BEGIN` and `END` markers. The agent asks for the website first, gathers only essential missing content, and then completes the requested upload and deployment without extra confirmation prompts.
 
-If the agent cannot install the private Git repository directly, clone this repository locally first and rerun the prompt from that checkout. The plugin's MCP endpoint is already declared in `.mcp.json`.
+If the agent cannot install the Git repository directly, clone this repository locally first and rerun the prompt from that checkout. The plugin's MCP endpoint is already declared in `.mcp.json`.
 
 ## Usage
 
@@ -262,18 +271,30 @@ Free accounts can deploy up to 5 tracked proposals per month, and each free depl
 
 ```text
 .
-├── .claude-plugin/plugin.json
+├── .claude-plugin/
+│   ├── marketplace.json
+│   └── plugin.json
 ├── .codex-plugin/plugin.json
 ├── .mcp.json
+├── assets/
 └── skills/
     ├── branded-template-generator/
     │   ├── SKILL.md
     │   ├── agents/openai.yaml
     │   └── references/
+    ├── google-slides-template-builder/
+    │   ├── SKILL.md
+    │   └── agents/openai.yaml
     └── proposal-from-conversation/
         ├── SKILL.md
         └── agents/openai.yaml
 ```
+
+## Privacy, terms, and support
+
+- Privacy policy: https://trytemplify.com/privacy-policy/
+- Terms of service: https://trytemplify.com/terms-of-service/
+- Support: https://trytemplify.com/customer-support/ or support@irvito.com
 
 ## License
 
