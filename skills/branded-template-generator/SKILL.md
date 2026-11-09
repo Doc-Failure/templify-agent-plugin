@@ -1,15 +1,19 @@
 ---
 name: branded-template-generator
-description: Create reusable branded sales proposal templates, business documents, presentation templates, and pitch decks as editable DOCX, PPTX, or XLSX files from a website or style brief, with optional Google Drive upload through Templify MCP. Use for proposals, reports, briefs, plans, presentations, and spreadsheet models; do not use for filling a template for a specific recipient.
+description: Create new branded proposals, business documents, presentations, and spreadsheets as editable DOCX, PPTX, or XLSX files from a website or style brief. Use for reusable templates or finished proposals for a specific customer, including creation followed by Google upload and deployment through Templify MCP. For personalizing an existing Google template, use proposal-from-conversation.
 ---
 
 # Templify Branded Template Generator
 
-Turn a website or style brief and a content brief into a reusable branded template saved on the local filesystem. The required output is an editable Office Open XML file plus a personalization manifest:
+Turn a website or style brief and a content brief into a branded document saved on the local filesystem. The required output is an editable Office Open XML file:
 
 - `.pptx` for visual, presenter-led material;
 - `.docx` for detailed, asynchronously reviewed material;
 - `.xlsx` for models, trackers, plans, and other editable structured data.
+
+For a reusable template, use placeholders and deliver an adjacent personalization manifest. For a finished customer proposal, use supplied customer facts and clearly mark missing information; do not replace known values with template tokens. A manifest is required only for reusable templates or remaining personalization fields. Infer this mode from the request.
+
+When these instructions arrive through `get_authoring_guide`, read the supplied file contents directly. Resolve relative reference links against the supplied skill path; no local installation or GitHub download is needed.
 
 Templify's core product is a Google Workspace add-on for personalizing, publishing, and tracking proposals. This free skill creates starting templates; the optional MCP integration lets an agent operate the Google workflow. Neither the add-on nor MCP is required for local generation.
 
@@ -37,7 +41,7 @@ When the user requests a presentation but has no design source, offer two choice
 
 Infer the purpose, audience, offer, language, tone, structure, and approximate length from the user's source content whenever they are reasonably clear. Do not ask the user to restate a template purpose that can be understood from that content. Ask a concise follow-up only for missing information that would materially change the result. Google Drive folders are outside this local-generation brief and must not be requested.
 
-Before researching or generating, present a short brief for confirmation. It must state:
+Before researching or generating, present a short brief. Ask for confirmation only when material choices remain unresolved; an explicit request with sufficient inputs already authorizes generation. It must state:
 
 - the selected format: DOCX, PPTX, or XLSX;
 - the proposed structure and approximate length;
@@ -61,9 +65,9 @@ Should I proceed with this setup?
 
 Use `🔵` for the proposed brief, `🟠` for a decision the user must make, and `📁` when emphasizing an output location. Keep the markers restrained and never rely on color alone: always include a textual heading or label.
 
-If the user has not explicitly selected a format, ask which format they want and wait for the answer. Never default to PPTX or infer the format from words such as "template," "proposal," "report," or "presentation." If another material requirement is missing or ambiguous, propose a sensible option and ask the user to confirm it. Begin generation only after the brief is sufficiently defined and the user has confirmed it. Do not turn inferred, low-risk details into extra questions.
+If the user has not selected a format or Google destination type, ask which format they want and wait for the answer. Google Docs maps to DOCX, Slides to PPTX, and Sheets to XLSX for local generation followed by upload. Never default to PPTX or infer the format from words such as "template," "proposal," "report," or "presentation." If another material requirement is missing or ambiguous, propose a sensible option and ask the user to confirm it. Begin generation when the brief is sufficiently defined and honor authorization already supplied. Do not turn inferred, low-risk details into extra questions.
 
-For the destination, use the path supplied by the user. If none is supplied, propose `<current-working-directory>/outputs/<project-slug>/` and ask for confirmation. Interpret `<current-working-directory>` at runtime; never replace it in the published skill with the author's absolute path.
+For the destination, use the path supplied by the user. If none is supplied, use `<current-working-directory>/outputs/<project-slug>/` and state the resolved path in the brief. Interpret `<current-working-directory>` at runtime; never replace it in the published skill with the author's absolute path.
 
 Never invent results, testimonials, prices, dates, biographies, or statistics. Clearly label estimates, examples, and placeholders.
 
@@ -75,7 +79,7 @@ Translate the evidence into a compact system of colors, typography roles and fal
 
 ## Define the reusable contract
 
-Read [references/personalization-contract.md](references/personalization-contract.md). Define reusable fields and repeatable or optional sections before laying out the file. Keep recipient-specific values as stable `{{snake_case_placeholders}}`; keep permanent labels and brand copy as normal text.
+For reusable templates or remaining personalization fields, read [references/personalization-contract.md](references/personalization-contract.md). Skip this contract for a finished proposal without personalization fields. Define reusable fields and repeatable or optional sections before laying out the file. In reusable templates, keep recipient-specific values as stable `{{snake_case_placeholders}}`; keep permanent labels and brand copy as normal text.
 
 Every placeholder in the artifact must map to exactly one manifest field. Save the manifest beside the artifact as `<artifact-basename>.manifest.json`.
 
@@ -83,20 +87,20 @@ Every placeholder in the artifact must map to exactly one manifest field. Save t
 
 Plan the information architecture before rendering. Choose sections and layouts that fit the requested template type. For example, a proposal may move from context to approach and next action; a report may move from summary to findings and recommendations; a plan may move from objectives to workstreams, timing, ownership, and measures. Do not impose proposal sections on other template types.
 
-Every DOCX template must begin with a dedicated, full-page cover. Read [references/docx-cover-design.md](references/docx-cover-design.md) for the cover composition pattern: a strong full-bleed visual field, high-contrast title block, restrained accent rule, subtitle, and lower metadata area. Translate that pattern into the brand system derived for the brief; do not copy another brand's colors, logo, wording, or exact artwork. Adding the cover must not force a different body structure or visual direction: preserve the architecture selected for the brief and treat the cover as an opening layer.
+Every new DOCX document must begin with a dedicated, full-page cover unless the user explicitly requests otherwise. A title followed by pricing or summary paragraphs on the same page is not a standalone cover. Start the body after an explicit page or section break. Read [references/docx-cover-design.md](references/docx-cover-design.md) for the cover composition pattern: a strong full-bleed visual field, high-contrast title block, restrained accent rule, subtitle, and lower metadata area. Translate that pattern into the brand system derived for the brief; do not copy another brand's colors, logo, wording, or exact artwork. Adding the cover must not force a different body structure or visual direction: preserve the architecture selected for the brief and treat the cover as an opening layer.
 
 Read the selected section in [references/format-guides.md](references/format-guides.md). Maintain one central message per slide or section, distinguish facts from assumptions, and cite external facts with readable links or notes.
 
 Generate the requested file using document-generation capabilities available in the runtime. Suitable implementations include OOXML libraries, office-document tools, or a compatible office suite. Dependencies must be installed only in a project-local or temporary location; never require global installation. Do not rely on the skill author's home directory, browser profile, credentials, fonts, fixed absolute paths, or files outside this skill and the user's stated inputs.
 
-Create the confirmed output directory when needed. Save both files there with the same basename:
+Create the output directory when needed. Save the artifact and, when applicable, its manifest there with the same basename:
 
 ```text
 <confirmed-output-directory>/<template-name>.<docx|pptx|xlsx>
 <confirmed-output-directory>/<template-name>.manifest.json
 ```
 
-Tell the user this exact destination before generation and return clickable paths to both files afterward. Use a descriptive filename and never overwrite an existing file unless the user explicitly authorizes it. If the preferred web font is unavailable, use a documented portable fallback. Embed or package required images so the artifact does not depend on temporary URLs.
+Tell the user this exact destination before generation and return clickable paths to the delivered files afterward. Use a descriptive filename and never overwrite an existing file unless the user explicitly authorizes it. If the preferred web font is unavailable, use a documented portable fallback. Embed or package required images so the artifact does not depend on temporary URLs.
 
 Creating only Markdown, HTML, JSON, screenshots, or a design specification does not satisfy the request. If this runtime truly cannot create the requested OOXML format, explain the missing capability instead of claiming completion.
 
@@ -115,14 +119,14 @@ If a required inspection capability is unavailable, perform the strongest availa
 
 Before returning:
 
-1. Confirm the artifact and manifest exist in the requested local directory.
+1. Confirm the artifact and any required manifest exist in the requested local directory.
 2. Open or parse the OOXML package and confirm it is structurally valid.
 3. Render or inspect every page, slide, or relevant worksheet when the runtime supports it; check clipping, overflow, broken images, inconsistent spacing, formulas, and unreadable contrast.
-4. For DOCX, confirm page one is a standalone cover and body content starts after an explicit page or section break. Check that the title, subtitle, metadata, contrast, and any artwork remain inside the page bounds and render correctly without remote font or image dependencies.
+4. For DOCX, unless the user requested no cover, confirm page one is a standalone cover and body content starts on page two after an explicit page or section break. Repeat this cover check on the converted Google document and deployed PDF when those outputs are requested. Check that the title, subtitle, metadata, contrast, and any artwork remain inside the page bounds and render correctly without remote font or image dependencies.
 5. Confirm all `{{...}}` tokens are valid and mapped exactly once in the manifest.
-6. Exercise one representative long value and one omitted optional value in a disposable copy, then leave the delivered template pristine.
+6. For reusable templates, exercise one representative long value and one omitted optional value in a disposable copy, then leave the delivered template pristine.
 
-Return clickable local paths for the artifact and manifest, the selected format, a concise description of the design and optional sections, and any assumptions or validation limitations.
+Return clickable local paths for the artifact and any manifest, the selected format, a concise description of the design and optional sections, and any assumptions or validation limitations.
 
 ## Optional next steps: Workspace add-on or agent
 

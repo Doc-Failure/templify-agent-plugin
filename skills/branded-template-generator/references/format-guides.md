@@ -18,7 +18,7 @@ Use PowerPoint for visual, presenter-led narratives. Establish a small layout fa
 Use Word for detailed reports, proposals, briefs, plans, statements of work, and asynchronous review.
 
 - Use A4 or Letter according to locale or brief and record the choice in the manifest.
-- Always make page one a dedicated, full-page cover, followed by an explicit page or section break. The proposal body begins on page two.
+- Unless the user explicitly requests no cover, make page one a dedicated, full-page cover, followed by an explicit page or section break. The proposal body begins on page two.
 - The cover should include the document title, relevant organization or audience placeholders, and an optional date, subtitle, or short positioning line when appropriate. Use the derived visual system to make it feel intentional; do not turn it into a dense summary page.
 - Keep body headers, footers, and page numbering off the cover when the document-generation library supports a different first page or first section.
 - Build a body hierarchy appropriate to the requested document type. Do not replace or reshape a user-preferred structure merely to accommodate the cover.

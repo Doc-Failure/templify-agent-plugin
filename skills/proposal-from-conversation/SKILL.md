@@ -25,7 +25,12 @@ The labels may be localized, but every value must begin with `https://` and rema
 
 Identify the conversation source, Google template, intended recipient, output filename, proposal objective, and whether deployment is requested. Use a pasted transcript directly. When audio is attached, transcribe it with the host's native capability; if that capability is unavailable, ask for a transcript. Never upload audio to Templify.
 
-Accept Google Docs, Slides, and Sheets templates. If the user has not supplied an accessible Google file URL or ID, call `choose_google_template`, give them its Picker link, and then poll `get_google_template_selection` after they finish selecting. Display the complete absolute `pickerUrl` using the terminal-safe rule above, because some MCP clients do not make rendered links clickable.
+Choose the creation path from the request:
+
+- **New proposal without an existing template:** use `$branded-template-generator` in finished-customer-proposal mode. If that skill is not installed, call `get_authoring_guide` with `workflow: "create"` and the requested format (`docx` for Google Docs, `pptx` for Slides, `xlsx` for Sheets); read its supplied skill and reference contents. Generate and validate the local file, then upload and deploy only as authorized. Do not require the user to choose a template for this path.
+- **Personalize an existing template:** accept Google Docs, Slides, and Sheets templates and follow the copy-and-edit workflow below. If the user wants to use a template but has not supplied an accessible URL or ID, call `choose_google_template`, give them its Picker link, and poll `get_google_template_selection` after selection. Display the complete absolute `pickerUrl` using the terminal-safe rule above.
+
+When instructions arrive through `get_authoring_guide`, use the supplied contents directly; no local skill installation is required.
 
 ## Create the editable Google file
 
@@ -38,6 +43,8 @@ Accept Google Docs, Slides, and Sheets templates. If the user has not supplied a
 7. After the final edit, inspect the whole copy at summary detail and the changed regions at structure detail. Analyze content completeness, ordering, editability, and obvious layout risks; correct problems and repeat the relevant inspection. Leave the editable Google file in the user's Drive.
 
 Do not invent prices, commitments, customer facts, dates, or outcomes that the conversation does not support. Clearly label assumptions and proposed values.
+
+For Google Docs proposals, preserve and personalize an existing cover. If the copied template has no cover, add a dedicated opening page using its brand system unless the user requests otherwise. Keep title, subtitle, and supported recipient/sender metadata on the cover, with pricing and summary content in the body after an explicit page break. Check the cover in the edited file and any exported PDF; never add it to the source template.
 
 ## Analyze every created or changed file
 

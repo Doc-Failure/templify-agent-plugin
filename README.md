@@ -15,13 +15,13 @@ Model choice and transcription are provided by your agent host (Claude Code or C
 
 `branded-template-generator` supports:
 
-- DOCX reports, proposals, briefs, and plans
+- DOCX reports, proposals, briefs, and plans with a dedicated branded cover
 - PPTX presentations and pitch materials
 - XLSX models, trackers, and structured plans
 - Website-informed visual systems
 - Stable `{{placeholder}}` contracts for later personalization
 
-The skill creates local files only: it writes the Office file and its personalization manifest to disk and does not upload, publish, email, or share them. To bring a generated file into Google Workspace, use the `upload_google_file` workflow below.
+The skill creates reusable templates or finished customer documents locally. Templates include a personalization manifest; finished proposals use the supplied customer facts. Upload and deployment occur only when requested, through the MCP handoff below.
 
 `proposal-from-conversation` supports:
 
@@ -30,7 +30,7 @@ The skill creates local files only: it writes the Office file and its personaliz
 - Editable Drive copies without modifying the source template
 - Tracked web/PDF deployment and proposal analytics
 
-This skill selects an existing Google Docs, Slides, or Sheets template, copies it, edits the copy, and optionally deploys a separately tracked web/PDF version. It never edits the source template.
+This skill can personalize a copy of an existing Google Docs, Slides, or Sheets template, or route a new proposal without a source template to `branded-template-generator`. It never edits a source template. Upload and tracked web/PDF deployment follow the user's authorization.
 
 `google-slides-template-builder` supports:
 
@@ -70,6 +70,40 @@ Claude Code and Codex load this configuration when the plugin is installed or en
 The first Google-dependent call starts an OAuth flow with the `drive.file` scope. Approve access in the browser for the Google account you want to use. Templify then acts only on files that account can access, and you can revoke access at any time from your Google Account permissions.
 
 MCP is required for the `proposal-from-conversation` skill, `upload_google_file`, deployment, and analytics. `branded-template-generator` works without it.
+
+### Authoring guidance for MCP-only clients
+
+The server integration exposes `get_authoring_guide` so an agent connected only to MCP can retrieve the same maintained skills without installing this plugin. Server initialization instructions and relevant tool descriptions direct the agent to retrieve the guide before generating a file. The response includes the skill and supporting references inline, including DOCX cover design; it performs no generation, installation, Google writes, or quota-consuming operations.
+
+- `format`: `docx`, `pptx`, or `xlsx` (also used for Google Docs, Slides, and Sheets respectively).
+- `workflow`: `create` (default), `personalize_template`, or `google_slides_template` (PPTX only).
+
+For example, a new customer proposal for Google Docs uses `{"format":"docx","workflow":"create"}`. A request to copy and personalize an existing Google template uses `personalize_template`. Uploading an existing user file, checking analytics, or managing billing does not require an authoring guide.
+
+This is model-readable workflow guidance, not automatic local skill installation or a server-enforced design guarantee. Clients must expose the tool and the agent must follow its instructions. The full plugin remains available for native skill discovery.
+
+The MCP backend lives in the separate Google Workspace service repository. Before releasing a skill change to MCP users, export a matching bundle into that service:
+
+```bash
+python3 scripts/export-authoring-guides.py --output <service-repo>/functions/src/data/templifyAuthoringGuides.json
+python3 scripts/export-authoring-guides.py --output <service-repo>/functions/src/data/templifyAuthoringGuides.json --check
+```
+
+The exporter includes only the maintained skill Markdown and references, checks relative reference completeness, and records a content hash. Commit the generated JSON with the service change; the backend embeds it at build time instead of fetching mutable GitHub content at runtime. Run `npm run test:mcp-authoring` and `npm run build` in the service's `functions/` directory before deployment. Repository changes alone do not update the hosted MCP endpoint: deploy the server, then reconnect or refresh the client's MCP tools and verify `get_authoring_guide` is listed. Clients connected to an older server can still use the installed plugin.
+
+## Published packages
+
+Download the current plugin from [GitHub Releases](https://github.com/Doc-Failure/templify-agent-plugin/releases/latest). Release assets contain the plugin manifests, MCP configuration, all three maintained skills and references, branding assets, and license. `SHA256SUMS.txt` accompanies each release.
+
+The versioned plugin download is separate from the hosted MCP authoring guide. The MCP server serves its embedded `templifyAuthoringGuides.json` bundle; it does not read or install ZIP/TAR archives. Codex Marketplace submission is also separate from a GitHub release.
+
+To prepare a release, update both plugin manifests to the same version, validate the skills and manifests, and commit the source. Build packages from that clean commit:
+
+```bash
+python3 scripts/package-release.py --output-dir /tmp/templify-release
+```
+
+Tag and push that exact commit, then attach the generated ZIP, TAR.GZ, and checksums to its GitHub Release. Keep release archives out of the source tree. Before releasing authoring changes to MCP users, also synchronize and deploy the backend bundle as described above.
 
 ## Claude Code
 
@@ -253,6 +287,7 @@ Free accounts can deploy up to 5 tracked proposals per month, and each free depl
 
 | Tool | Purpose |
 | --- | --- |
+| `get_authoring_guide` | Read the maintained authoring skill and references before creating a proposal or template; requires the server release containing the guide integration. |
 | `choose_google_template` | Create a short-lived Google Picker link for a Docs, Slides, or Sheets template. |
 | `get_google_template_selection` | Return the file selected with a Picker ticket. |
 | `inspect_google_file` | Read metadata and content (`summary` or `structure`) from a Google file. |
