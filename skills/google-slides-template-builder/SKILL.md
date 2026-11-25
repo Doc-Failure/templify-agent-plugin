@@ -7,6 +7,12 @@ description: Create a reusable Google Slides sales proposal, presentation templa
 
 Create a reusable Google Slides template by starting from a presentation in Google's built-in template gallery, then adapting its slide structure and example content to the user's brief. Preserve the Google-native theme, layouts, typography, shapes, and editable elements.
 
+## Connect to Templify
+
+For an authorized Google operation that needs a new MCP connection, start the host's normal OAuth login flow. The Templify page offers **Continue with Google** and an email field. Regular users can select Google directly; test users enter their assigned email to reach password login. Passwords and verification codes stay in the browser. Reuse an existing authenticated connection; local-only generation needs no connection.
+
+If the user wants to supply the email in chat and the host supports an OAuth `login_hint`, pass it through the supported login flow to skip the initial page. If the host exposes its pending Templify `/oauth/authorize` URL for opening, set only the encoded `login_hint`, preserving every other parameter, including state, PKCE, client, redirect URI, and resource. Never fabricate an OAuth transaction, request tokens yourself, or store the email in shared MCP configuration. If hints are unsupported, use the browser options and explain the limitation. An email selects the sign-in route; Google or password verification establishes identity.
+
 ## Establish the brief
 
 Confirm the presentation's purpose, audience, approximate length, language, and reusable fields. If the user has not selected a gallery design, offer two or three relevant Google Slides template categories or names and ask them to choose before creating a Drive file.

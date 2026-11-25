@@ -67,7 +67,7 @@ The public Templify MCP endpoint is declared in [.mcp.json](.mcp.json):
 
 Claude Code and Codex load this configuration when the plugin is installed or enabled. No MCP server is bundled in this repository; the plugin connects to the hosted endpoint over streamable HTTP.
 
-The first Google-dependent call starts an OAuth flow with the `drive.file` scope. Approve access in the browser for the Google account you want to use. Templify then acts only on files that account can access, and you can revoke access at any time from your Google Account permissions.
+For a new connection, the host starts its standard OAuth flow. Templify's branded login page offers **Continue with Google** and an email option. Regular users can sign in with Google directly; test users enter their assigned email to reach password login. An optional OAuth `login_hint` can skip this page when the user supplies an email and the host supports passing it. Passwords and verification codes stay in the browser. Existing authenticated connections are reused. Google access uses the `drive.file` scope and can be revoked from Google Account permissions.
 
 MCP is required for the `proposal-from-conversation` skill, `upload_google_file`, deployment, and analytics. `branded-template-generator` works without it.
 
@@ -157,7 +157,7 @@ Set up Templify in this agent. Do what you can and guide me through anything tha
 1. Identify this agent and version, then inspect existing plugins, MCP servers, and skills. Preserve existing configuration and avoid duplicates.
 2. Install the Templify plugin using this agent's supported plugin or skill workflow. Use the public Git repository Doc-Failure/templify-agent-plugin, or a local checkout of it if I have one. Check the installed client's help or current documentation before running commands.
 3. Confirm that the Templify plugin includes its three skills and its MCP configuration. Do not copy credentials into chat, shell history, or repository files.
-4. Reload or restart the agent only if required. On the first Google-dependent action, let me approve the Templify OAuth flow in my browser.
+4. Reload or restart the agent only if required. If a new connection is needed, start the normal OAuth flow and let me choose Google sign-in or enter my test account email on the Templify page. If I supply an email and the host supports a login hint, pass it as `login_hint` to skip that page. Let me complete authentication in the browser; never ask for passwords or codes in chat.
 5. Verify that the Templify MCP tools and skills are discoverable, but do not create, upload, edit, deploy, or purchase anything during setup.
 
 When setup is complete, briefly report what succeeded and any action I must take. Then suggest these tests:

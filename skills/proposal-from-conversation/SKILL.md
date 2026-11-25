@@ -21,6 +21,12 @@ PDF: https://...
 
 The labels may be localized, but every value must begin with `https://` and remain directly copyable from a terminal. A clickable Markdown link may be added separately, but never instead of these raw URLs. If an MCP response supplies only an ID, use the file type and ID to construct the canonical absolute Google URL before handoff. If no valid absolute URL can be obtained, report that explicitly rather than presenting an ID as a link.
 
+## Connect to Templify
+
+For an authorized Google operation that needs a new MCP connection, start the host's normal OAuth login flow. The Templify page offers **Continue with Google** and an email field. Regular users can select Google directly; test users enter their assigned email to reach password login. Passwords and verification codes stay in the browser. Reuse an existing authenticated connection; local-only generation needs no connection.
+
+If the user wants to supply the email in chat and the host supports an OAuth `login_hint`, pass it through the supported login flow to skip the initial page. If the host exposes its pending Templify `/oauth/authorize` URL for opening, set only the encoded `login_hint`, preserving every other parameter, including state, PKCE, client, redirect URI, and resource. Never fabricate an OAuth transaction, request tokens yourself, or store the email in shared MCP configuration. If hints are unsupported, use the browser options and explain the limitation. An email selects the sign-in route; Google or password verification establishes identity.
+
 ## Establish the inputs
 
 Identify the conversation source, Google template, intended recipient, output filename, proposal objective, and whether deployment is requested. Use a pasted transcript directly. When audio is attached, transcribe it with the host's native capability; if that capability is unavailable, ask for a transcript. Never upload audio to Templify.
