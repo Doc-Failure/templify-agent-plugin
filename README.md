@@ -78,7 +78,7 @@ The server integration exposes `get_authoring_guide` so an agent connected only 
 - `format`: `docx`, `pptx`, or `xlsx` (also used for Google Docs, Slides, and Sheets respectively).
 - `workflow`: `create` (default), `personalize_template`, or `google_slides_template` (PPTX only).
 
-For example, a new customer proposal for Google Docs uses `{"format":"docx","workflow":"create"}`. A request to copy and personalize an existing Google template uses `personalize_template`. Uploading an existing user file, checking analytics, or managing billing does not require an authoring guide.
+For example, a new customer proposal for Google Docs uses `{"format":"docx","workflow":"create"}`. A request to copy and personalize an existing Google template uses `personalize_template`. Uploading an existing user file, checking analytics, or reading plan status does not require an authoring guide.
 
 This is model-readable workflow guidance, not automatic local skill installation or a server-enforced design guarantee. Clients must expose the tool and the agent must follow its instructions. The full plugin remains available for native skill discovery.
 
@@ -278,8 +278,9 @@ Ask the assistant for a summary, for example: "List my deployments and show stat
 
 ### 6. Manage your plan
 
-- **Account and billing website:** use https://app.trytemplify.com/ with the same Google account connected to MCP. The standalone website shows plan and usage, offers subscriptions through Stripe, and manages existing billing without requiring the Workspace add-on. Purchases are initiated independently on the website; the public MCP tools do not start subscriptions or return checkout links.
-- **Manage or cancel:** ask the assistant to manage your subscription. It returns a Stripe customer portal link where you can update your payment method, change plans, or cancel. Pro stays active while the subscription is active or trialing and is removed once it lapses.
+- **Current plan and allowance:** ask the assistant for your Templify plan status. It returns your current entitlements, quota, subscription status, and a neutral [View plan information](https://app.trytemplify.com/plans.html) link.
+- **Plan limitations:** the assistant explains when a feature or deployment exceeds your current allowance. Existing paid accounts can use their included features through MCP. The informational page contains no subscription, upgrade, checkout, or billing-portal controls.
+- **Public MCP scope:** subscription checkout and Stripe billing-portal tools are not exposed. Billing remains available independently through the standalone account website.
 
 Free accounts can deploy up to 5 tracked proposals per month, and each free deployment expires 7 days after creation. Pro removes the monthly deployment limit and lets you choose the expiry, or leave it open-ended. The skills always respect Templify's quota and expiry; they never bypass them.
 
@@ -298,8 +299,7 @@ Free accounts can deploy up to 5 tracked proposals per month, and each free depl
 | `list_deployments` | List your active tracked deployments. |
 | `get_deployment_stats` | Return views, visitors, engagement, devices, browsers, and referrers. |
 | `unpublish_deployment` | Permanently remove a deployment and its analytics. |
-| `get_templify_plan_status` | Show Free/Pro status, quota, and subscription status. |
-| `manage_templify_subscription` | Return a Stripe Portal link to update payment details or cancel. |
+| `get_templify_plan_status` | Show current plan, quota, subscription status, and an informational plan link. |
 
 ## Repository layout
 
