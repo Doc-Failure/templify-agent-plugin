@@ -116,7 +116,7 @@ Treat every file-changing operation as unfinished until its result has been insp
 
 - After local generation or editing, parse the OOXML package and render or open the artifact when the runtime supports it. Analyze the actual content, structure, layout, editability, and requested branding—not merely whether the file exists.
 - After `upload_google_file`, immediately call `inspect_google_file` on the returned Google file. Compare its type, title, content, structure, and page, slide, or sheet count with the validated local artifact. Correct material conversion problems when the current request authorizes Google edits; otherwise report them before continuing.
-- After each `apply_google_file_edits` call, re-inspect the affected content or structure before issuing an edit that depends on it. After the final edit, inspect the whole file at summary detail and the changed regions at structure detail.
+- After each supported editing-tool call, re-inspect the affected content or structure before issuing an edit that depends on it. After the final edit, inspect the whole file at summary detail and the changed regions at structure detail.
 - After `deploy_google_file`, open and analyze the returned public web URL and PDF URL with the browsing or document-inspection capability available in the runtime. Confirm that both load, represent the intended Google file, include the expected content and pages, and have no obvious clipping, missing assets, ordering errors, or unreadable output.
 
 If a required inspection capability is unavailable, perform the strongest available structural check, state exactly what could not be visually verified, and do not claim that the unchecked representation was validated. When analysis finds a problem, fix it if the current request authorizes that file operation, then repeat the relevant inspection. Otherwise report the problem and ask before expanding scope.
@@ -150,3 +150,27 @@ For the add-on path, explain that the Office file must become a native Google fi
 Only when the user explicitly asks to upload the generated artifact, read the confirmed Office file as base64 and call `upload_google_file` with its filename and the exact Office MIME type. Never upload the manifest. Analyze the uploaded result according to the checkpoints above before returning the editable Google file URL and ID or continuing to edits or deployment. Follow the terminal-safe URL format above after upload, after personalization, and after deployment. This upload is separate from proposal personalization: do not edit any source template. When the user has already explicitly requested deployment, do not add another confirmation step before publishing or deploying the uploaded file. Analyze any deployed web and PDF representations before handoff.
 
 For installation, packaging, and behavioral tests of this skill itself, read [references/distribution-and-testing.md](references/distribution-and-testing.md).
+
+## Supported editing tools
+
+Use only the individually exposed editing tools. The former `apply_google_file_edits` operation is removed; do not send raw Google API commands, request arrays, or an operation selector to any replacement tool.
+
+| File type | Task | Tool |
+| --- | --- | --- |
+| Docs | Replace literal text/placeholders | `replace_google_docs_text` |
+| Docs | Insert or append plain text | `insert_google_docs_text` |
+| Docs | Separate the cover and body | `insert_google_docs_page_break` |
+| Docs | Format a text range | `format_google_docs_text` |
+| Docs | Format paragraph alignment, spacing, headings | `format_google_docs_paragraphs` |
+| Slides | Replace literal text/placeholders | `replace_google_slides_text` |
+| Slides | Set/clear one shape's text | `set_google_slide_text` |
+| Slides | Format one shape's text | `format_google_slide_text` |
+| Slides | Create one slide from a native layout | `create_google_slide` |
+| Slides | Insert a plain-text text box | `insert_google_slide_text_box` |
+| Sheets | Write literal values in a finite A1 range | `set_google_sheet_values` |
+| Sheets | Set explicitly authorized formulas | `set_google_sheet_formulas` |
+| Sheets | Format a bounded cell rectangle | `format_google_sheet_cells` |
+
+All edits require a file created for the connected account by `copy_google_file` or `upload_google_file`. Never edit the original template. Inspect the file first for the correct file kind, tab/shape/sheet IDs and text indexes, then re-inspect after each edit before issuing dependent changes. Docs text indexes are UTF-16; end indexes are exclusive. Sheets formatting uses zero-based grid indexes, while value/formula tools use finite sheet-qualified A1 ranges whose dimensions must exactly match the supplied rectangular matrix. Literal values are written in RAW mode, even if a string begins with '='; formulas use their separate tool and may access external data, so use only formulas the user authorized.
+
+If the requested edit is not supported by an exposed tool, explain the limitation. Do not reconstruct the removed generic executor or fabricate a tool name. For a new proposal, authoring and validating a local Office file before upload remains available. Do not silently replace a user's existing file or broaden the requested changes to work around a missing operation.

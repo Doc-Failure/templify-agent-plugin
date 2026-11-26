@@ -45,12 +45,36 @@ When instructions arrive through `get_authoring_guide`, use the supplied content
 3. Synthesize all proposal content from the conversation in the agent. Do not expect placeholders and do not ask Templify to generate copy.
 4. Call `copy_google_file` before making edits. Never edit the source template.
 5. Inspect the new copy before editing and confirm that its type, content, structure, and page, slide, or sheet count match the source.
-6. Apply typed Google Docs, Slides, or Sheets `batchUpdate` operations to the copy with `apply_google_file_edits`. Use small coherent batches. After every batch, re-inspect the affected content or structure before making another edit that depends on it.
+6. Apply the specific supported editing tool for the copied file and requested change (see the table below). After every edit, re-inspect the affected content or structure before making another edit that depends on it.
 7. After the final edit, inspect the whole copy at summary detail and the changed regions at structure detail. Analyze content completeness, ordering, editability, and obvious layout risks; correct problems and repeat the relevant inspection. Leave the editable Google file in the user's Drive.
 
 Do not invent prices, commitments, customer facts, dates, or outcomes that the conversation does not support. Clearly label assumptions and proposed values.
 
 For Google Docs proposals, preserve and personalize an existing cover. If the copied template has no cover, add a dedicated opening page using its brand system unless the user requests otherwise. Keep title, subtitle, and supported recipient/sender metadata on the cover, with pricing and summary content in the body after an explicit page break. Check the cover in the edited file and any exported PDF; never add it to the source template.
+
+## Supported editing tools
+
+Use only the individually exposed editing tools. The former `apply_google_file_edits` operation is removed; do not send raw Google API commands, request arrays, or an operation selector to any replacement tool.
+
+| File type | Task | Tool |
+| --- | --- | --- |
+| Docs | Replace literal text/placeholders | `replace_google_docs_text` |
+| Docs | Insert or append plain text | `insert_google_docs_text` |
+| Docs | Separate the cover and body | `insert_google_docs_page_break` |
+| Docs | Format a text range | `format_google_docs_text` |
+| Docs | Format paragraph alignment, spacing, headings | `format_google_docs_paragraphs` |
+| Slides | Replace literal text/placeholders | `replace_google_slides_text` |
+| Slides | Set/clear one shape's text | `set_google_slide_text` |
+| Slides | Format one shape's text | `format_google_slide_text` |
+| Slides | Create one slide from a native layout | `create_google_slide` |
+| Slides | Insert a plain-text text box | `insert_google_slide_text_box` |
+| Sheets | Write literal values in a finite A1 range | `set_google_sheet_values` |
+| Sheets | Set explicitly authorized formulas | `set_google_sheet_formulas` |
+| Sheets | Format a bounded cell rectangle | `format_google_sheet_cells` |
+
+All edits require a file created for the connected account by `copy_google_file` or `upload_google_file`. Never edit the original template. Inspect the file first for the correct file kind, tab/shape/sheet IDs and text indexes, then re-inspect after each edit before issuing dependent changes. Docs text indexes are UTF-16; end indexes are exclusive. Sheets formatting uses zero-based grid indexes, while value/formula tools use finite sheet-qualified A1 ranges whose dimensions must exactly match the supplied rectangular matrix. Literal values are written in RAW mode, even if a string begins with '='; formulas use their separate tool and may access external data, so use only formulas the user authorized.
+
+If the requested edit is not supported by an exposed tool, explain the limitation. Do not reconstruct the removed generic executor or fabricate a tool name. For a new proposal, authoring and validating a local Office file before upload remains available. Do not silently replace a user's existing file or broaden the requested changes to work around a missing operation.
 
 ## Analyze every created or changed file
 

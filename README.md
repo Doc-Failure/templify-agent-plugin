@@ -238,7 +238,7 @@ Use `upload_google_file` to send a local `.docx`, `.pptx`, or `.xlsx` to Google 
 Generate locally with branded-template-generator
         ↓ upload_google_file
 Editable Google Docs / Slides / Sheets file
-        ↓ apply_google_file_edits, deploy_google_file
+        ↓ specific editing tools, deploy_google_file
 Tracked web/PDF deployment + analytics
 ```
 
@@ -251,7 +251,7 @@ Invoke `proposal-from-conversation` with a pasted transcript (or an audio attach
 1. Uses Google Picker (`choose_google_template` → `get_google_template_selection`) when you have not supplied an accessible template URL or ID.
 2. Inspects the source with `inspect_google_file`.
 3. Copies it with `copy_google_file`, so the original template is never modified.
-4. Applies typed Google `batchUpdate` requests with `apply_google_file_edits`.
+4. Applies the individually exposed editing tool for the file type and requested operation, then inspects the result.
 5. Publishes a separate tracked version with `deploy_google_file` only after you request or confirm deployment.
 
 Prices, dates, commitments, and customer facts are never invented; assumptions are labeled.
@@ -294,7 +294,11 @@ Free accounts can deploy up to 5 tracked proposals per month, and each free depl
 | `inspect_google_file` | Read metadata and content (`summary` or `structure`) from a Google file. |
 | `copy_google_file` | Create an editable Drive copy without changing the source template. |
 | `upload_google_file` | Upload a local DOCX, PPTX, or XLSX and get the editable Google file. |
-| `apply_google_file_edits` | Apply typed Google batchUpdate requests to a copied file. |
+| `replace_google_docs_text`, `insert_google_docs_text`, `insert_google_docs_page_break` | Replace or insert text and add cover/body page breaks in managed Docs. |
+| `format_google_docs_text`, `format_google_docs_paragraphs` | Format managed Docs text and paragraphs. |
+| `replace_google_slides_text`, `set_google_slide_text`, `format_google_slide_text` | Personalize or format managed Slides text. |
+| `create_google_slide`, `insert_google_slide_text_box` | Add a native-layout slide or a text box to a managed presentation. |
+| `set_google_sheet_values`, `set_google_sheet_formulas`, `format_google_sheet_cells` | Write literal values, set authorized formulas, or format bounded cells in managed Sheets. |
 | `deploy_google_file` | Export to PDF and publish a separately tracked web version. |
 | `list_deployments` | List your active tracked deployments. |
 | `get_deployment_stats` | Return views, visitors, engagement, devices, browsers, and referrers. |

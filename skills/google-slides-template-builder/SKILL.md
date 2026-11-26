@@ -40,11 +40,11 @@ Authorize or select the created presentation through Templify before editing it.
 Adapt the deck to the confirmed brief:
 
 - Keep the Google theme and useful native layouts.
-- Retain only the slides needed for the intended reusable structure.
+- Select a source with an appropriate slide structure. Removing slides is not exposed by the MCP; make structural deletions in the Google editor when the user authorizes that path.
 - Replace gallery example copy with stable `{{snake_case_placeholders}}`, reusable instructions, or permanent labels.
 - Keep one primary message or purpose per slide.
 - Clearly label example figures, dates, prices, claims, and testimonials; never present invented values as facts.
-- Use `apply_google_file_edits` in small coherent batches and re-inspect after structural changes.
+- First create a managed copy with `copy_google_file`. Use `replace_google_slides_text`, `set_google_slide_text`, or `format_google_slide_text` for content; `create_google_slide` adds one native-layout slide, and `insert_google_slide_text_box` adds a text box. Re-inspect after every edit. Never send raw API commands or use the removed generic executor.
 
 This skill creates a reusable template, not a recipient-specific proposal. Do not deploy or publish it. Use the proposal personalization workflow later to copy, populate, and optionally deploy the template.
 
