@@ -12,6 +12,12 @@ Use this pattern for the opening page of a DOCX proposal, report, brief, or plan
 - Place metadata toward the lower portion of the page: prepared for, prepared by, date, and an optional document status or validity line.
 - Keep the cover intentionally sparse. Do not put body sections, tables, pricing details, or dense copy on it.
 
+## A client proposal cover in practice
+
+For a formal proposal, give page one a continuous field of brand color or a large, bounded editorial panel. Set an editable title and short subtitle in the upper portion, use one contrasting accent, and anchor the recipient and supported date near the foot. If the customer site is light, a light field with strong typography works too. An approved illustration can occupy the middle space. Keep the cover legible without it. The proposal example can determine the composition while the designated customer site determines the colors, type choices and graphic details.
+
+Render page one and page two side by side at thumbnail size. Page one should read as a cover before its words are legible; page two should open the body. Inspect both at reading size for clipping and contrast. A heading above a large blank area or an explicit page break alone does not establish that the visual design survived. If Google Docs is the deliverable, repeat this check using a PDF exported from the actual Google Doc. Repair lost fills, displaced art or broken pagination in the deliverable and re-export. If only structural inspection is available, report that limit.
+
 ## Portability
 
 - Prefer embedded shapes, SVGs, and images over remote assets.
