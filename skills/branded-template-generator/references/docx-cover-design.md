@@ -4,17 +4,14 @@ Use this pattern for the opening page of a DOCX proposal, report, brief, or plan
 
 ## Composition
 
-- Use one dedicated full page before the body.
-- For a new or restyled proposal cover, extend a solid native brand-color fill to all four page edges. The fill covers the physical width and height of page one, including the area behind the text margins. Use internal padding for editable cover text.
-- Place the main title in a high-contrast block, with a clear typographic hierarchy and comfortable wrapping for long titles.
-- Add a short subtitle or value statement below the title.
-- Use a contrasting text color or native paragraph rule for a restrained accent.
-- Place metadata toward the lower portion of the page: prepared for, prepared by, date, and an optional document status or validity line.
-- Keep the cover intentionally sparse. Do not put body sections, tables, pricing details, or dense copy on it.
+Use the designated website or style brief to choose a dominant brand color, a contrasting text color, the title typeface, and one accent. When the brief calls for a visibly colored cover and the website uses light surfaces, use a saturated accent or dark brand color for the full page. Check the cover at thumbnail size as well as reading size. Choose a solid native fill, or a native gradient when the brand uses one and the destination preserves it. Fall back to a representative solid color if conversion loses the gradient.
 
-## A client proposal cover in practice
+- For a new or restyled proposal cover, extend the field to all four page edges. Inset the lettering with internal padding.
+- Make the editable title the largest element. Group it with a short subtitle and one restrained typographic accent, such as a native paragraph rule. Let longer titles wrap at natural phrase boundaries.
+- Leave breathing room between the title group and the metadata. Near the foot, align the recipient and preparer with the title. Include dates and status only when the brief supplies them.
+- Start the proposal body on page two. Use the cover's type and accent color in the body headings or tables.
 
-Use a full-bleed cover with a continuous background, zero outer border, and no surrounding paper-colored frame. Set an editable title and short subtitle in the upper portion, use one contrasting accent, and anchor the recipient and supported date near the foot. If the customer site is light, a light field with strong typography works too. Keep generated artwork off page one. Do not add a photograph, illustration, icon, decorative drawing, SVG, background image, or a rasterized title panel. The proposal example can determine the composition while the designated customer site determines the colors, type choices and graphic details.
+Keep generated artwork off page one. Use editable type and native formatting throughout the proposal cover. The reference document may guide composition while the customer's site supplies the visual identity.
 
 Render page one and page two side by side at thumbnail size. Page one should read as a cover before its words are legible; page two should open the body. Inspect both at reading size for clipping and contrast. A heading above a large blank area or an explicit page break alone does not establish that the visual design survived. If Google Docs is the deliverable, repeat this check using a PDF exported from the actual Google Doc. Check the rendered proposal cover for images, including first-page headers and backgrounds. Repair unexpected artwork, lost fills, or broken pagination in the deliverable and re-export. If only structural inspection is available, report that limit.
 
@@ -26,7 +23,7 @@ Inspect the rendered page at its actual crop boundary, including the corners and
 
 ## Portability
 
-- Use native text styles and solid fills for the proposal cover.
+- Use native text styles and a fill that survives conversion to the requested format.
 - Use fonts available in the target environment or package a safe fallback; never rely on a web font URL at render time.
 - Maintain readable contrast and test long client names, long titles, and missing optional metadata.
 - For existing templates, preserve supplied branding unless the user requests a redesigned or image-free cover.
